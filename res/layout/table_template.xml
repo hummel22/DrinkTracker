@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TableRow
+				        android:id="@+id/entry_row1"
+				        android:layout_width="match_parent"
+				        android:layout_height="wrap_content"
+				        android:padding="@dimen/entry_row_padding"
+				        
+				        >
+				        <TextView
+				            android:id="@+id/beer_name_entry1"
+				            android:text="Bud Light"
+				            android:gravity="left"
+				            android:padding="@dimen/entry_row_padding"
+				            android:textColor="@color/black"/>
+				        <TextView
+				            android:id="@+id/drink_number_entry1"
+				            android:text="6"
+				            android:padding="@dimen/entry_row_padding"
+				            android:gravity="right"
+				            android:textColor="@color/black"/>
+				         <TextView
+				            android:id="@+id/cost_per_drink_entry1"
+				            android:text="$1.56"
+				            android:gravity="right"
+				            android:padding="@dimen/entry_row_padding"
+				            android:textColor="@color/black"/>
+				          <TextView
+				            android:id="@+id/drinks_entry1"
+				            android:text="8.67"
+				            android:gravity="right"
+				            android:layout_marginRight="5dp"
+				            android:padding="@dimen/entry_row_padding"
+				            android:textColor="@color/black"/>
+					 </TableRow>
+					 
+					 <TableRow
+				        android:id="@+id/entry_row1"
+				        android:layout_width="match_parent"
+				        android:layout_height="wrap_content"
+				        android:padding="@dimen/entry_row_padding"
+				        android:layout_span="2"
+				        >
+				        <TextView
+				            android:id="@+id/beer_name_entry1"
+				            android:text="Miller"
+				            android:gravity="left"
+				            android:padding="@dimen/entry_row_padding"
+				            android:textColor="@color/black"/>
+				        <TextView
+				            android:id="@+id/drink_number_entry1"
+				            android:text="6"
+				            android:padding="@dimen/entry_row_padding"
+				            android:gravity="right"
+				            android:textColor="@color/black"/>
+				         <TextView
+				            android:id="@+id/cost_per_drink_entry1"
+				            android:text="$1.56"
+				            android:gravity="right"
+				            android:padding="@dimen/entry_row_padding"
+				            android:textColor="@color/black"/>
+				          <TextView
+				            android:id="@+id/drinks_entry1"
+				            android:text="8.67"
+				            android:gravity="right"
+				            android:layout_marginRight="5dp"
+				            android:padding="@dimen/entry_row_padding"
+				            android:textColor="@color/black"/>
+					 </TableRow>
+
+</LinearLayout>

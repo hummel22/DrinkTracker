@@ -1,0 +1,232 @@
+<!-- 	Main Layout -->
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:orientation="vertical"
+	    android:layout_height="match_parent"
+	    android:layout_width="match_parent"
+	    >
+	    
+<!-- 	 Top Section -->
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dip"
+	        android:layout_weight="@integer/top_section_height"
+	        android:background="@color/backgroundcolor"
+	        
+	        >
+	        <TextView
+	            android:layout_alignParentLeft="true"
+	            android:layout_alignParentBottom="true"
+	            android:id="@+id/template_name_textView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:text="Template Name"
+	            android:gravity="center_vertical"
+	            android:layout_marginLeft="15dp"
+	            android:textColor="@color/black"/>
+	        	
+	        <TextView
+	            android:layout_alignParentRight="true"
+	            android:layout_alignParentBottom="true"
+	            android:gravity="center_vertical"
+	            android:id="@+id/date_textView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="match_parent"
+	            android:layout_marginRight="15dp"
+	            android:text="Date"
+	            android:textSize="@dimen/date_font_size"
+	            android:textColor="@color/black"/>
+	        	
+	            
+	    </RelativeLayout>
+	    
+<!-- 	    Middle Section -->
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dip"
+	        android:layout_weight="@integer/middle_section_height"
+	        android:background="@color/backgroundcolor"
+	        android:orientation="horizontal"
+	        >
+	        
+	        <LinearLayout
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="@integer/sidebars_width"
+		        android:background="@color/backgroundcolor"
+		        android:orientation="vertical">	            
+	        </LinearLayout>
+	        
+<!-- 	        Center View -->
+			
+	        <LinearLayout
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="@integer/center_menu_width"
+		        android:background="@drawable/customborder"
+		        android:orientation="vertical">	
+		        
+<!-- 		        Table Headers -->
+				<TableLayout
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:shrinkColumns="*"
+        			android:stretchColumns="*"
+				    android:id="@+id/header_table_layout">
+				    <TableRow
+				        android:id="@+id/header_row"
+				        android:layout_width="match_parent"
+				        android:layout_height="wrap_content"
+				        android:padding="@dimen/header_row_padding"
+				        android:gravity="center_horizontal"
+				        >
+				        <TextView
+				            android:id="@+id/beer_name_label"
+				            android:text="Name"
+				            android:layout_width="match_parent"
+				            android:padding="@dimen/header_row_padding"
+				            android:textStyle="bold"
+				            android:layout_marginRight = "@dimen/beer_name_label_margin"
+				            android:layout_marginLeft = "5dp"
+				            android:textColor="@color/black"/>
+				        <TextView
+				            android:id="@+id/drink_number_label"
+				            android:layout_width="match_parent"
+				            android:text="#"
+				            android:padding="@dimen/header_row_padding"
+				            android:textStyle="bold"
+				            android:textColor="@color/black"/>
+				         <TextView
+				            android:id="@+id/cost_per_drink_label"
+				            android:layout_width="match_parent"
+				            android:text="$/Drink"
+				            android:padding="@dimen/header_row_padding"
+				            android:textStyle="bold"
+				            android:textColor="@color/black"/>
+				          <TextView
+				            android:id="@+id/drinks_label"
+				            android:layout_width="match_parent"
+				            android:text="Drinks"
+				            android:padding="@dimen/header_row_padding"
+				            android:textStyle="bold"
+				            android:textColor="@color/black"/>
+					 </TableRow>
+				</TableLayout>
+<!-- 				Divider Line -->
+				<View
+   					android:layout_width="fill_parent"
+    				android:layout_height="1dp"
+    				android:background="@color/border_color"
+    				android:paddingLeft="5dp"
+    				android:paddingRight="5dp"/>
+				
+				
+				
+<!-- 				Entries -->
+					<TableLayout
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:shrinkColumns="*"
+                    android:stretchColumns="*"
+				    android:id="@+id/entries_table_layout">
+				    
+					</TableLayout>
+					
+					
+					
+					
+<!-- 				Add Entry Button -->
+				<Button 
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:text="@string/entry_button_text"
+				    android:id="@+id/entry_button"
+				    />         
+	        </LinearLayout>
+	        
+	        <LinearLayout
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="@integer/sidebars_width"
+		        android:background="@color/backgroundcolor"
+		        android:orientation="vertical">	            
+	        </LinearLayout>
+	       
+	    </LinearLayout>
+
+	    
+<!-- 	    Bottom Section -->
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dip"
+	        android:layout_weight="@integer/bottom_section_height"
+	        android:background="@color/backgroundcolor"
+	        android:orientation="horizontal" >
+	        
+<!-- 	    OverView  Labels -->
+	        <LinearLayout
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="@integer/bottom_section_labels_width"
+		        android:background="@color/backgroundcolor"
+		        android:orientation="vertical"
+		        android:layout_margin="@dimen/bottom_layout_margin">	
+		        
+		        <TextView     
+		            android:id="@+id/cost_total_label_textView"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Cost"
+		            android:textSize="@dimen/cost_total_label_font_size"
+		            android:textColor="@color/black"/>
+		        	
+		        <TextView
+		            android:id="@+id/drink_total_label_textView"
+		            android:layout_width="173dp"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="@dimen/drink_total_marginTop"
+		            android:singleLine="true"
+		            android:text="Drinks"
+		            android:textColor="@color/black"
+		            android:textSize="@dimen/drink_total_label_font_size" />
+            
+	        </LinearLayout>
+	        
+<!-- 	        OverView Stats -->
+	        <RelativeLayout
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="@integer/bottom_section_stats_width"
+		        android:background="@color/backgroundcolor"
+		        android:orientation="vertical"
+		        android:layout_margin="@dimen/bottom_layout_margin"
+		        >	
+		        
+		        <TextView      
+		            android:layout_alignParentRight="true"
+		            android:id="@+id/cost_total_stats_textView"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="$0.00"
+		            android:textSize="@dimen/cost_total_stats_font_size"
+		            android:textColor="@color/black"/>
+		        	
+		        
+		        <TextView
+		            android:layout_below="@id/cost_total_stats_textView"
+		            android:layout_alignParentRight="true"
+		            android:id="@+id/drink_total_stats_textView"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="@dimen/drink_total_marginTop"
+		            android:text="0"
+		            android:textSize="@dimen/drink_total_stats_font_size"
+		            android:textColor="@color/black"/>            
+	        </RelativeLayout>
+	        	
+	    </LinearLayout>
+	    
+	    
+	</LinearLayout>
+
+

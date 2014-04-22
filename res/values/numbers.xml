@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name = "alcoholpercentage">5</integer>
+    <integer name="top_section_height">15</integer>
+    <integer name="middle_section_height">55</integer>
+    <integer name="bottom_section_height">30</integer>
+    <integer name="sidebars_width">8</integer>
+    <integer name="center_menu_width">84</integer>
+    
+    <integer name="bottom_section_labels_width">50</integer>
+    <integer name="bottom_section_stats_width">50</integer>
+
+    
+</resources>

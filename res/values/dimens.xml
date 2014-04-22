@@ -1,0 +1,23 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="date_font_size">32dp</dimen>
+    
+    <dimen name="cost_total_label_font_size">28dp</dimen>
+    <dimen name="drink_total_label_font_size">46dp</dimen>
+    <dimen name="cost_total_stats_font_size">28dp</dimen>
+    <dimen name="drink_total_stats_font_size">46dp</dimen>
+    
+    <dimen name="header_row_padding">5dp</dimen>
+    <dimen name="entry_row_padding">5dp</dimen>
+    <dimen name="bottom_layout_margin">25dp</dimen>
+    <dimen name="beer_name_label_margin">60dp</dimen>
+    <dimen name="entry_widths">75dp</dimen>
+    <dimen name="units_button_width">60dp</dimen>
+    <dimen name="icon_button_width">35dp</dimen>
+    <dimen name="drink_total_marginTop">10dp</dimen>
+    
+
+</resources>
