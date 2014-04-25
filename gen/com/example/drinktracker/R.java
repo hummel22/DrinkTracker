@@ -19,13 +19,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int metaButtonBarStyle=0x7f010000;
     }
     public static final class color {
-        public static final int backgroundcolor=0x7f040004;
+        public static final int backgroundcolor=0x7f040005;
         public static final int black=0x7f040002;
         public static final int black_overlay=0x7f040000;
-        public static final int border_color=0x7f040005;
-        public static final int center_color=0x7f040006;
+        public static final int border_color=0x7f040006;
+        public static final int center_color=0x7f040007;
         public static final int green=0x7f040003;
         public static final int orange=0x7f040001;
+        public static final int table_background=0x7f040004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -58,44 +59,45 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int wine_icon=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0025;
-        public static final int alcohol_entry=0x7f0a0019;
-        public static final int alcohol_label=0x7f0a0018;
-        public static final int beer_button=0x7f0a0013;
-        public static final int beer_label=0x7f0a0010;
-        public static final int beer_name_entry1=0x7f0a0021;
-        public static final int beer_name_label=0x7f0a0006;
-        public static final int cost_entry=0x7f0a001d;
-        public static final int cost_label=0x7f0a001c;
-        public static final int cost_per_drink_entry1=0x7f0a0023;
-        public static final int cost_per_drink_label=0x7f0a0008;
-        public static final int cost_total_label_textView=0x7f0a000c;
-        public static final int cost_total_stats_textView=0x7f0a000e;
-        public static final int date_textView=0x7f0a0003;
-        public static final int dialogButtonCancel=0x7f0a001f;
-        public static final int dialogButtonOK=0x7f0a001e;
-        public static final int drink_number_entry1=0x7f0a0022;
-        public static final int drink_number_label=0x7f0a0007;
-        public static final int drink_total_label_textView=0x7f0a000d;
-        public static final int drink_total_stats_textView=0x7f0a000f;
-        public static final int drinks_entry1=0x7f0a0024;
-        public static final int drinks_label=0x7f0a0009;
-        public static final int entries_table_layout=0x7f0a000a;
-        public static final int entry_button=0x7f0a000b;
-        public static final int entry_row1=0x7f0a0020;
-        public static final int header_row=0x7f0a0005;
-        public static final int header_table_layout=0x7f0a0004;
-        public static final int item_name_entry=0x7f0a0011;
+        public static final int action_settings=0x7f0a0026;
+        public static final int alcohol_entry=0x7f0a001a;
+        public static final int alcohol_label=0x7f0a0019;
+        public static final int beer_button=0x7f0a0014;
+        public static final int beer_label=0x7f0a0011;
+        public static final int beer_name_entry1=0x7f0a0022;
+        public static final int beer_name_label=0x7f0a0007;
+        public static final int cost_entry=0x7f0a001e;
+        public static final int cost_label=0x7f0a001d;
+        public static final int cost_per_drink_entry1=0x7f0a0024;
+        public static final int cost_per_drink_label=0x7f0a0009;
+        public static final int cost_total_label_textView=0x7f0a000d;
+        public static final int cost_total_stats_textView=0x7f0a000f;
+        public static final int date_textView=0x7f0a0004;
+        public static final int dialogButtonCancel=0x7f0a0020;
+        public static final int dialogButtonOK=0x7f0a001f;
+        public static final int drink_number_entry1=0x7f0a0023;
+        public static final int drink_number_label=0x7f0a0008;
+        public static final int drink_total_label_textView=0x7f0a000e;
+        public static final int drink_total_stats_textView=0x7f0a0010;
+        public static final int drinks_entry1=0x7f0a0025;
+        public static final int drinks_label=0x7f0a000a;
+        public static final int entries_table_layout=0x7f0a000b;
+        public static final int entry_button=0x7f0a000c;
+        public static final int entry_row1=0x7f0a0021;
+        public static final int header_row=0x7f0a0006;
+        public static final int header_table_layout=0x7f0a0005;
+        public static final int item_name_entry=0x7f0a0012;
         public static final int newtemplateButton=0x7f0a0000;
-        public static final int number_entry=0x7f0a001b;
-        public static final int number_of_drinks_label=0x7f0a001a;
-        public static final int shots_button=0x7f0a0015;
-        public static final int size_entry=0x7f0a0017;
-        public static final int size_label=0x7f0a0012;
-        public static final int template_name_textView=0x7f0a0002;
+        public static final int number_entry=0x7f0a001c;
+        public static final int number_of_drinks_label=0x7f0a001b;
+        public static final int session_table_layout=0x7f0a0002;
+        public static final int shots_button=0x7f0a0016;
+        public static final int size_entry=0x7f0a0018;
+        public static final int size_label=0x7f0a0013;
+        public static final int template_name_textView=0x7f0a0003;
         public static final int textView1=0x7f0a0001;
-        public static final int units_button=0x7f0a0016;
-        public static final int wine_button=0x7f0a0014;
+        public static final int units_button=0x7f0a0017;
+        public static final int wine_button=0x7f0a0015;
     }
     public static final class integer {
         public static final int alcoholpercentage=0x7f060000;

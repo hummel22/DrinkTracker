@@ -111,6 +111,7 @@ public class TemplateActivity extends Activity {
 		drinkView.setText(String.format("%.2f",totalDrinksOverall));
 	};
 	
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -27,5 +27,19 @@
         android:layout_marginRight="25dp"
         android:layout_toLeftOf="@+id/newtemplateButton"
         android:text="New Session" />
+    <TableLayout
+        android:id="@+id/session_table_layout"
+        android:layout_below="@id/textView1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:shrinkColumns="*"
+        android:stretchColumns="*"
+        android:background="@color/table_background"
+		>
+        
+    </TableLayout>
+    
+   
+			
 
 </RelativeLayout>
