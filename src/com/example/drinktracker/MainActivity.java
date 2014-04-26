@@ -1,6 +1,7 @@
 package com.example.drinktracker;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -32,7 +33,7 @@ public class MainActivity extends Activity {
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 	
-	private void addRow(String[] data){
+	private void addRow(String[] data,int SessionID){
 		String name = data[0];
     	String date = data[1];
     	String drinks = data[2];
@@ -40,10 +41,17 @@ public class MainActivity extends Activity {
 		TableRow row= new TableRow(this);
 		TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         row.setLayoutParams(lp);
+        row.setId(SessionID);
         
         TextView DateTextView = new TextView(this);
 		TextView NameTextView = new TextView(this);
 		TextView DrinksTextView = new TextView(this);
+		
+		int padd = getResources().getDimensionPixelSize(R.dimen.entry_row_padding);
+		DateTextView.setPadding(2*padd,2*padd,padd,2*padd);
+		NameTextView.setPadding(padd,2*padd,padd,2*padd);
+		DrinksTextView.setPadding(padd,2*padd,padd,2*padd);
+		
 		
 		DateTextView.setText(date);
 		NameTextView.setText(name);
@@ -52,6 +60,18 @@ public class MainActivity extends Activity {
 		row.addView(NameTextView);
 		row.addView(DrinksTextView);
 		itemtable.addView(row);
+		
+		row.setOnClickListener( new OnClickListener() {
+		    @Override
+		    public void onClick( View v ) {
+		        //Do Stuff
+		    	Intent newTemplate = new Intent(MainActivity.this,
+            			TemplateActivity.class);
+		    	int idvalue = v.getId();
+		    	newTemplate.putExtra("SESSION_ID", idvalue);
+            	startActivity(newTemplate);
+		    }
+		} );
 		
 	}
     @Override
@@ -73,10 +93,10 @@ public class MainActivity extends Activity {
         //Build Layout from SQL file
         String[] data = new String[4];
         
-        for(int i = 0;i<numberOfRows;i++)
+        for(int i = 1;i<=numberOfRows;i++)
         {
         	data = USER_DATA.retrieveSession(i);
-        	addRow(data);
+        	addRow(data,Integer.parseInt(data[3]));
         	
         }
         //Check Internet connection
@@ -90,9 +110,19 @@ public class MainActivity extends Activity {
         //Create New Session
         templateButton.setOnClickListener(new OnClickListener(){
         	public void onClick(View v) {
-        		templateText.setText("Testt");
         		Intent newTemplate = new Intent(MainActivity.this,
             			TemplateActivity.class);
+        		
+        		Calendar c = Calendar.getInstance();
+        	    int Day = c.get(Calendar.DATE);
+        	    int Year = c.get(Calendar.YEAR);
+        	    int Month = c.get(Calendar.MONTH)+1;
+        	    String Date = String.valueOf(Month)+"/"+String.valueOf(Day)+"/"+String.valueOf(Year);
+        		String[] temp = {"Template",Date,"0.00"};
+        		int idvalue = USER_DATA.addSession("Template", Date, "0.00");
+        		addRow(temp,idvalue);
+        		
+        		newTemplate.putExtra("SESSION_ID", idvalue);
             	startActivity(newTemplate);
         	}
         	

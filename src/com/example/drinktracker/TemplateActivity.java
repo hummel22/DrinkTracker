@@ -1,5 +1,6 @@
 package com.example.drinktracker;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 import com.example.drinktracker.util.SystemUiHider;
@@ -15,6 +16,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,6 +42,9 @@ public class TemplateActivity extends Activity {
 	double totalDrinksOverall=0;
 	double mLtooz = 0.033814;
 	double scaler = 1;
+	private SessionSQL USER_DATA;
+	int SESSION_ID = 0;
+	final double oneDrink = 0.6;
 
 	private boolean isEmpty(EditText etText) {
 	    if (etText.getText().toString().trim().length() > 0) {
@@ -49,13 +54,14 @@ public class TemplateActivity extends Activity {
 	    }
 	};
 	
-	private void addRow(String name,double units,double costperDrink,double totalDrinks)
+	private void addRow(String name,double units,double costperDrink,double totalDrinks,int entryid)
 	{
 		//Add to Table
 		TableLayout itemtable = (TableLayout) findViewById(R.id.entries_table_layout);
 		TableRow row= new TableRow(this);
 		TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         row.setLayoutParams(lp);
+        row.setId(entryid);
         
 		TextView nameText = new TextView(this);
 		TextView unitsText = new TextView(this);
@@ -116,21 +122,62 @@ public class TemplateActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Intent intent = getIntent();
+		SESSION_ID = intent.getIntExtra("SESSION_ID", 0);
+		
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    setContentView(R.layout.activity_template); 
+	    USER_DATA = new SessionSQL(this);
 	    
 	    final Button newEntry = (Button) findViewById(R.id.entry_button);
 	    final TextView templateView = (TextView) findViewById(R.id.date_textView);
 	    
+	    //Add Date to top
 	    Calendar c = Calendar.getInstance();
 	    int Day = c.get(Calendar.DATE);
 	    int Year = c.get(Calendar.YEAR);
 	    int Month = c.get(Calendar.MONTH)+1;
-	    
 	    templateView.setText(String.valueOf(Month)+"/"+String.valueOf(Day)+"/"+String.valueOf(Year));
 	    
-	    
-	    
+	    //Populate list with Old data
+	    String[] data = new String[7];
+	    double alcohol = 0;
+		double count = 0;
+		double cost = 0;
+		double size = 0;
+		String beerName = null;
+		double drinkTotal;
+		double costperDrink;
+		int entryID = 0;
+		int sessionID;
+		
+		//Find Number of previous Entries and add to tabel
+	    int numberOfEntries = USER_DATA.entryCount(SESSION_ID);
+	    for(int i = 0; i < numberOfEntries; i++){
+	    	//get Values
+	    	data = USER_DATA.retrieveEntry(i, SESSION_ID);
+	    	//seperate
+	    	Log.d("this is my array", "arr: " + Arrays.toString(data));
+	    	try {
+	    	 entryID = Integer.parseInt(data[0]);
+	    	 sessionID = Integer.parseInt(data[1]);
+	    	 beerName = data[2];
+	    	 alcohol = Double.parseDouble(data[3]);
+	    	 size = Double.parseDouble(data[4]);
+	    	 count = Double.parseDouble(data[5]);
+	    	 cost = Double.parseDouble(data[6]);
+	    	}catch(Exception e){Log.e("MYAPP", "exception", e);};
+	    	
+	    	//calculate new values
+	    	drinkTotal = (alcohol/100)*size*count/oneDrink;
+			costperDrink = cost/drinkTotal;
+	    			
+	    	//add row
+			addRow(beerName,count,costperDrink,drinkTotal,entryID);
+	    	
+	    	//update Counters
+			updateCounters(cost,drinkTotal);
+	    }
 	    newEntry.setOnClickListener(new OnClickListener(){
         	public void onClick(View v) {
         		//Open Dialog Here
@@ -138,7 +185,7 @@ public class TemplateActivity extends Activity {
     			final Dialog dialog = new Dialog(context);
     			dialog.setContentView(R.layout.custom);
     			dialog.setTitle("New Entry");
-    			final double oneDrink = 0.6;
+    			
     			
     			
     			final EditText itemNameEditText = (EditText) dialog.findViewById(R.id.item_name_entry);
@@ -159,8 +206,7 @@ public class TemplateActivity extends Activity {
     					unitButton.setText("oz");
     					scaler = 1;
     				}
-    			});
-    			
+    			});    			
     			wineButton.setOnClickListener(new OnClickListener(){
     				public void onClick(View v){
     					sizeEditText.setText("5");
@@ -242,24 +288,24 @@ public class TemplateActivity extends Activity {
     					if(goodtoGO)
     					{
     						//Calculate Needed Values
-    						drinkTotal = (alcohol/100)*size*units*scaler/oneDrink;
+    						size = size*scaler;
+    						drinkTotal = (alcohol/100)*size*units/oneDrink;
     						costperDrink = cost/drinkTotal;
-    						
-    						addRow(name,units,costperDrink,drinkTotal);
+    						int entryid =USER_DATA.addEntry(name, String.valueOf(alcohol), String.valueOf(size), String.valueOf(cost), String.valueOf(drinkTotal), SESSION_ID);
+    						addRow(name,units,costperDrink,drinkTotal,entryid);
     						updateCounters(cost,drinkTotal);
+    						
     						dialog.dismiss();
     						
     					}
     				}
-    			});
-     
+    			});     
     			dialogCloseButton.setOnClickListener(new OnClickListener(){
     				public void onClick(View v){
     					dialog.dismiss();
     				}
     			});
-    			
-     
+    			     
     			dialog.show();
         	}        	
         });
