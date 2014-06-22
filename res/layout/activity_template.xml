@@ -14,16 +14,21 @@
 	        android:background="@color/backgroundcolor"
 	        
 	        >
-	        <TextView
+	        <EditText
 	            android:layout_alignParentLeft="true"
 	            android:layout_alignParentBottom="true"
-	            android:id="@+id/template_name_textView"
+	            android:id="@+id/template_name_textEdit"
 	            android:layout_width="wrap_content"
 	            android:layout_height="match_parent"
 	            android:text="Template Name"
 	            android:gravity="center_vertical"
 	            android:layout_marginLeft="15dp"
+	            android:background="@android:color/transparent"
+	            android:imeOptions="actionDone"
+	            android:singleLine="true"
 	            android:textColor="@color/black"/>
+	        
+	        
 	        	
 	        <TextView
 	            android:layout_alignParentRight="true"

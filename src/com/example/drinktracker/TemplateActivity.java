@@ -16,8 +16,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -30,6 +33,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 
 
 public class TemplateActivity extends Activity {
@@ -115,6 +119,7 @@ public class TemplateActivity extends Activity {
 		
 		TextView drinkView = (TextView) findViewById(R.id.drink_total_stats_textView);
 		drinkView.setText(String.format("%.2f",totalDrinksOverall));
+		USER_DATA.updateDrinkCount(totalDrinksOverall, SESSION_ID);
 	};
 	
 		
@@ -131,13 +136,52 @@ public class TemplateActivity extends Activity {
 	    
 	    final Button newEntry = (Button) findViewById(R.id.entry_button);
 	    final TextView templateView = (TextView) findViewById(R.id.date_textView);
+	    final EditText templateName = (EditText) findViewById(R.id.template_name_textEdit);
+	    //Load Date and Name
+	    String[] sessionData = USER_DATA.retrieveSession(SESSION_ID);
+	    String name = sessionData[0];
+	    String date = sessionData[1];
+	    templateView.setText(date);
+	    templateName.setText(name);
+	    
+	    //Listeners
+	    templateName.setOnEditorActionListener(
+	            new EditText.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+			    if (event != null) {
+			        // if shift key is down, then we want to insert the '\n' char in the TextView;
+			        // otherwise, the default action is to send the message.
+			        if (!event.isShiftPressed()) {
+			        	//event
+			        	USER_DATA.updateSession(templateName.getText().toString(), templateView.getText().toString(), SESSION_ID);
+			        	InputMethodManager imm = (InputMethodManager)getSystemService(
+			        			Context.INPUT_METHOD_SERVICE);
+			        			imm.hideSoftInputFromWindow(templateName.getWindowToken(), 0);
+			        	return true;
+			        }
+			        return false;
+			    }
+
+			    //event
+			    USER_DATA.updateSession(templateName.getText().toString(), templateView.getText().toString(), SESSION_ID);
+			    InputMethodManager imm = (InputMethodManager)getSystemService(
+	        			Context.INPUT_METHOD_SERVICE);
+	        			imm.hideSoftInputFromWindow(templateName.getWindowToken(), 0);
+			    return true;
+			}
+	    });
+	    
 	    
 	    //Add Date to top
-	    Calendar c = Calendar.getInstance();
-	    int Day = c.get(Calendar.DATE);
-	    int Year = c.get(Calendar.YEAR);
-	    int Month = c.get(Calendar.MONTH)+1;
-	    templateView.setText(String.valueOf(Month)+"/"+String.valueOf(Day)+"/"+String.valueOf(Year));
+//	    Calendar c = Calendar.getInstance();
+//	    int Day = c.get(Calendar.DATE);
+//	    int Year = c.get(Calendar.YEAR);
+//	    int Month = c.get(Calendar.MONTH)+1;
+//	    templateView.setText(String.valueOf(Month)+"/"+String.valueOf(Day)+"/"+String.valueOf(Year));
+	    
+
+	   
 	    
 	    //Populate list with Old data
 	    String[] data = new String[7];

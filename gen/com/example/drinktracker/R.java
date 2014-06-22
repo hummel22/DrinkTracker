@@ -94,7 +94,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shots_button=0x7f0a0016;
         public static final int size_entry=0x7f0a0018;
         public static final int size_label=0x7f0a0013;
-        public static final int template_name_textView=0x7f0a0003;
+        public static final int template_name_textEdit=0x7f0a0003;
         public static final int textView1=0x7f0a0001;
         public static final int units_button=0x7f0a0017;
         public static final int wine_button=0x7f0a0015;

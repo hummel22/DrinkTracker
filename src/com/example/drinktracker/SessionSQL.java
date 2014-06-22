@@ -94,9 +94,23 @@ public class SessionSQL extends SQLiteOpenHelper{
     	//return Session ID;
     	return (int)id;
     }    
-    public  void updateSession(String Name, String Date, String Drinks,int SessionID)
+    public  void updateSession(String Name, String Date, int SessionID)
     {
+    	SQLiteDatabase USER_DATA = this.getWritableDatabase();
+    	ContentValues values = new ContentValues();
+    	values.put(SESSION_NAME,Name);
+    	values.put(SESSION_DATE,Date);
     	
+    	long id = USER_DATA.update(SESSION_TABLE, values, SESSION_ID+ "=" + Integer.toString(SessionID), null);
+    }
+    
+    public void updateDrinkCount(double Drinks, int SessionID)
+    {
+    	SQLiteDatabase USER_DATA = this.getWritableDatabase();
+    	ContentValues values = new ContentValues();
+    	values.put(SESSION_DRINKS,Drinks);
+    	
+    	long id = USER_DATA.update(SESSION_TABLE, values, SESSION_ID+ "=" + Integer.toString(SessionID), null);
     }
     public  void deleteSession(int SessionID)
     {
@@ -141,7 +155,7 @@ public class SessionSQL extends SQLiteOpenHelper{
     	if (c.moveToFirst()){
     		stringValues[0] = c.getString(c.getColumnIndex(SESSION_NAME));
         	stringValues[1] = c.getString(c.getColumnIndex(SESSION_DATE));
-        	stringValues[2] = c.getString(c.getColumnIndex(SESSION_DRINKS));
+        	stringValues[2] = String.format("%.2f", c.getDouble(c.getColumnIndex(SESSION_DRINKS)));
         	stringValues[3] = c.getString(c.getColumnIndex(SESSION_ID));
         	
     	}
